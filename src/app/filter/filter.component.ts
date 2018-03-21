@@ -12,12 +12,11 @@ export class FilterComponent implements OnInit {
 
   onSubmit() {
     console.log('object ',this.filterText);
+    if(this.filterText) {
     this.studentsService.filterStudents(this.filterText, error => {
-      if(error) {
-        alert(error);
-      }
+      if(error) alert(error);
     });
-
+  }
   }
   ngOnInit() {
   }
