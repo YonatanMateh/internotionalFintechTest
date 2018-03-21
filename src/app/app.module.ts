@@ -24,6 +24,7 @@ import { StudentRowsComponent } from './student-rows/student-rows.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { DeleteStudentDialogComponent } from './delete-student-dialog/delete-student-dialog.component';
 import { AddStudentComponent } from './add-student/add-student.component';
+import { FilterStudentsPipe } from './filter-students.pipe';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AddStudentComponent } from './add-student/add-student.component';
     StudentRowsComponent,
     PaginationComponent,
     DeleteStudentDialogComponent,
-    AddStudentComponent
+    AddStudentComponent,
+    FilterStudentsPipe
   ],
   imports: [
     BrowserModule,
@@ -50,8 +52,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
     BrowserAnimationsModule, MatTableModule, MatInputModule, MatSortModule, MatPaginatorModule, 
     MatNativeDateModule
     ],
-  entryComponents: [DeleteStudentDialogComponent, EditButtonsComponent],
-
+  entryComponents: [AddStudentComponent, DeleteStudentDialogComponent, EditButtonsComponent],
   providers: [StudentsService],
   bootstrap: [AppComponent]
 })
