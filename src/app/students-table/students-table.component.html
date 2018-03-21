@@ -1,0 +1,15 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Date</th>
+      <th scope="col">Grade</th>
+      <th scope="col">Course</th>
+    </tr>
+  </thead>
+  <tbody student-rows [p]="p">
+      
+  </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <filter></filter>
+    </div>
+    <div class="col-md-6">
+      <edit-buttons></edit-buttons>
+    </div>
+    <div class="{{isStudentChosen ? 'col-8' : 'col-12'}} ">
+      <students-table></students-table>
+      <pagination></pagination>
+    </div>
+    <div class="col-4" *ngIf="isStudentChosen">
+      <details-window></details-window>
+    </div>
+  </div>
+</div>

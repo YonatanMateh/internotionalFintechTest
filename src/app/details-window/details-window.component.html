@@ -1,0 +1,56 @@
+<div class="container" *ngIf="currentStudent">
+  <p>Details:</p>
+  <form>
+
+    <div class="form-group row">
+      <span class="col-sm-12">ID: {{currentStudent.id}}</span>
+      <br>
+      <label for="firstName" class="col-sm-2 col-form-label">First Name: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputFirstName" [(ngModel)]="currentStudent.first_name" name="inputFirstName">
+      </div>
+
+      <label for="lastName" class="col-sm-2 col-form-label">Last name: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputLastName" [(ngModel)]="currentStudent.last_name" name="inputLastName">
+      </div>
+      <label for="email" class="col-sm-2 col-form-label">Email: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="currentStudent.email" name="inputEmail">
+      </div>
+      <label for="date" class="col-sm-2 col-form-label">Date: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="currentStudent.Date" name="inputDate">
+      </div>
+
+      <label for="address" class="col-sm-2 col-form-label">Address: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="currentStudent.Address" name="inputAddress">
+      </div>
+
+      <label for="country" class="col-sm-2 col-form-label">Country: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="currentStudent.Country" name="inputCountry">
+      </div>
+
+      <label for="country" class="col-sm-2 col-form-label" *ngIf="currentStudent.Zip">Zip: </label>
+      <div class="col-sm-10" *ngIf="currentStudent.Zip">
+        <input type="text" class="form-control" [(ngModel)]="currentStudent.Zip" name="inputZip">
+      </div>
+
+      <label for="course" class="col-sm-2 col-form-label">Course: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="grade.Course" name="inputCourse">
+      </div>
+
+      <label for="grade" class="col-sm-2 col-form-label">Grade: </label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" [(ngModel)]="grade.Grade" name="inputGrade">
+      </div>
+    </div>
+    <div class="col-12">
+      <button type="button" class="btn" (click)="cancelUpdating()">Cancel</button>
+      <button type="submit" class="btn btn-success" (click)="saveStudent()">Save</button>
+    </div>
+  </form>
+</div>

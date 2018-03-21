@@ -1,0 +1,5 @@
+<ng-container *ngFor="let student of students | paginate: { itemsPerPage: 1, currentPage: p}">
+    <tr *ngFor="let grade of student.Grades; let i=index "
+    student-row [student]="student" [grade]="grade" (click)="studentSelected(student, grade, i)">
+</tr>
+</ng-container>
