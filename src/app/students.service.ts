@@ -12,7 +12,8 @@ export class StudentsService {
   private students: Student[];
   private studentSource = new BehaviorSubject(null);
   private filterSource: BehaviorSubject<FilterObj> = new BehaviorSubject(null);
-
+  private studentList: Set<string>;
+  private coursesList: Set<string>;
   currentStudent = this.studentSource.asObservable();
   currentFilterObj = this.filterSource.asObservable();
 
@@ -34,11 +35,22 @@ export class StudentsService {
         student.date = grade.Date;
         student.grade = grade.Grade;
         student.course = grade.Course;
-        console.log(student.grade);
+        // console.log(student.grade);
         this.students.push(student);
       }
       //}
     });
+
+    this.studentList = new Set();
+    this.coursesList = new Set();
+
+    this.students.forEach(student => {
+      let { firstName, lastName, course } = student
+      this.studentList.add(firstName + ' ' + lastName);
+      this.coursesList.add(course);
+    })
+
+    
   }
 
   changeStudent(student: any) {
@@ -64,8 +76,12 @@ export class StudentsService {
     return this.students[this.students.length - 1].id;
   }
 
-  getSetOfStudents() {
+  getStudentsList(): Set<string> {
+    return this.studentList;
+  }
 
+  getCoursesList(): Set<string>{
+return this.coursesList;
   }
   addStudent(student: Student) {
     this.students.push(student);
@@ -74,8 +90,8 @@ export class StudentsService {
   updateStudent(student: Student) {
     // let { index } = this.studentSource.value;
 
-     let index = this.students.findIndex(currentStudent => currentStudent.privateKey == student.privateKey);
-console.log(student, index);
+    let index = this.students.findIndex(currentStudent => currentStudent.privateKey == student.privateKey);
+    console.log(student, index);
     this.students[index] = student;
     this.changeStudent(null);
   }
@@ -84,7 +100,7 @@ console.log(student, index);
     console.log('a', this.studentSource.value.id);
     console.log(this.studentSource.value);
     // let { index } = this.studentSource.value;
-       const {privateKey} = this.studentSource.value;
+    const { privateKey } = this.studentSource.value;
 
     //   // const index = this.students.findIndex(obj => obj.id === id);
 
@@ -120,7 +136,7 @@ console.log(student, index);
     } else {
       callback("Invalid input");
     }
-// console.log(text);
+    // console.log(text);
 
     if (type && operator && text && !isError) {
       let data = new FilterObj(type, text, operator);

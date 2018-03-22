@@ -22,7 +22,7 @@
         "styles.css",
         "../node_modules/ngx-select-dropdown/dist/assets/style.css"
       ],
-      "scripts": ['../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js'],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

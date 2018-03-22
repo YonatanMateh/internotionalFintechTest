@@ -29,6 +29,7 @@ import { FilterStudentsPipe } from './filter-students.pipe';
 import { FilterGradesPipe } from './filter-grades.pipe';
 import { StatisticsPageComponent } from './statistics-page/statistics-page.component';
 import { StatisticsSelectionComponent } from './statistics-selection/statistics-selection.component';
+import { AverageWindowComponent } from './average-window/average-window.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { StatisticsSelectionComponent } from './statistics-selection/statistics-
     FilterStudentsPipe,
     FilterGradesPipe,
     StatisticsPageComponent,
-    StatisticsSelectionComponent
+    StatisticsSelectionComponent,
+    AverageWindowComponent
   ],
   imports: [
     BrowserModule,

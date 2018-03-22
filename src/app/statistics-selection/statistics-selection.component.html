@@ -1,6 +1,27 @@
 <p>
   statistics-selection works!
 </p>
+<div class="container">
+  <div class="row">
+    <label class="col-md-2">Select Student:</label>
+    <div class="col-md-4">
+      <ngx-select-dropdown (change)="studentSelectionChanged($event)" [config]="config" [options]="studentsList" [(value)]="selectedStudents" [multiple]="true">Select Student</ngx-select-dropdown>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <label class="col-md-2">Select Course:</label>
+    <div class="col-md-4">
+      <ngx-select-dropdown (change)="coursesSelectionChanged($event)" [config]="config" [options]="coursesList" [(value)]="selectedCourses" [multiple]="true">Select Course</ngx-select-dropdown>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <average-window [students]="selectedStudents" [courses]="selectedCourses"></average-window>
+    </div>
+    <div class="col-md-4">
+      <average-window [students]="selectedStudents" [courses]="selectedCourses"></average-window>
 
-<ngx-select-dropdown [config]="config" [options]="dropdownOptions" 
-[(value)]="dataModel" [multiple]="true" >Select Student</ngx-select-dropdown>
+    </div>
+  </div>
+</div>
