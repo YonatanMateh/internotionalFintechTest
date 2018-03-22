@@ -6,13 +6,14 @@ import { FormsModule }   from '@angular/forms';
   import { MatTableModule, MatInputModule, MatSortModule, MatPaginatorModule, 
     MatNativeDateModule} from '@angular/material';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { SelectDropDownModule } from 'ngx-select-dropdown'
 
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { FilterComponent } from './filter/filter.component';
 import { EditButtonsComponent } from './edit-buttons/edit-buttons.component';
 import { StudentsTableComponent } from './students-table/students-table.component';
-import { StudentRowComponent } from './student-row/student-row.component';
+// import { StudentRowComponent } from './student-row/student-row.component';
 import { DetailsWindowComponent } from './details-window/details-window.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -22,9 +23,12 @@ import { DataPageComponent } from './data-page/data-page.component';
 import { RoutingModule } from './routing/routing.module';
 import { StudentRowsComponent } from './student-rows/student-rows.component';
 import { PaginationComponent } from './pagination/pagination.component';
-import { DeleteStudentDialogComponent } from './delete-student-dialog/delete-student-dialog.component';
+// import { DeleteStudentDialogComponent } from './delete-student-dialog/delete-student-dialog.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { FilterStudentsPipe } from './filter-students.pipe';
+import { FilterGradesPipe } from './filter-grades.pipe';
+import { StatisticsPageComponent } from './statistics-page/statistics-page.component';
+import { StatisticsSelectionComponent } from './statistics-selection/statistics-selection.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +37,17 @@ import { FilterStudentsPipe } from './filter-students.pipe';
     FilterComponent,
     EditButtonsComponent,
     StudentsTableComponent,
-    StudentRowComponent,
+    // StudentRowComponent,
     DetailsWindowComponent,
     DataPageComponent,
     StudentRowsComponent,
     PaginationComponent,
-    DeleteStudentDialogComponent,
+    // DeleteStudentDialogComponent,
     AddStudentComponent,
-    FilterStudentsPipe
+    FilterStudentsPipe,
+    FilterGradesPipe,
+    StatisticsPageComponent,
+    StatisticsSelectionComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +57,10 @@ import { FilterStudentsPipe } from './filter-students.pipe';
     NgxPaginationModule,
     MatDialogModule,
     BrowserAnimationsModule, MatTableModule, MatInputModule, MatSortModule, MatPaginatorModule, 
-    MatNativeDateModule
+    MatNativeDateModule,
+    SelectDropDownModule
     ],
-  entryComponents: [AddStudentComponent, DeleteStudentDialogComponent, EditButtonsComponent],
+  entryComponents: [AddStudentComponent, EditButtonsComponent],
   providers: [StudentsService],
   bootstrap: [AppComponent]
 })

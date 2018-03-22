@@ -6,12 +6,12 @@
       <br>
       <label for="firstName" class="col-sm-2 col-form-label">First Name: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputFirstName" [(ngModel)]="currentStudent.first_name" name="inputFirstName">
+        <input type="text" class="form-control" id="inputFirstName" [(ngModel)]="currentStudent.firstName" name="inputFirstName">
       </div>
 
       <label for="lastName" class="col-sm-2 col-form-label">Last name: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputLastName" [(ngModel)]="currentStudent.last_name" name="inputLastName">
+        <input type="text" class="form-control" id="inputLastName" [(ngModel)]="currentStudent.lastName" name="inputLastName">
       </div>
       <label for="email" class="col-sm-2 col-form-label">Email: </label>
       <div class="col-sm-10">
@@ -19,37 +19,37 @@
       </div>
       <label for="date" class="col-sm-2 col-form-label">Date: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="grade.Date" name="inputDate">
+        <input type="text" class="form-control" [(ngModel)]="currentStudent.date" name="inputDate">
       </div>
 
       <label for="address" class="col-sm-2 col-form-label">Address: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="currentStudent.Address" name="inputAddress">
+        <input type="text" class="form-control" [(ngModel)]="currentStudent.address" name="inputAddress">
       </div>
 
       <label for="country" class="col-sm-2 col-form-label">Country: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="currentStudent.Country" name="inputCountry">
+        <input type="text" class="form-control" [(ngModel)]="currentStudent.country" name="inputCountry">
       </div>
 
-      <label for="country" class="col-sm-2 col-form-label" *ngIf="currentStudent.Zip">Zip: </label>
-      <div class="col-sm-10" *ngIf="currentStudent.Zip">
-        <input type="text" class="form-control" [(ngModel)]="currentStudent.Zip" name="inputZip">
+      <label for="country" class="col-sm-2 col-form-label" *ngIf="currentStudent.zip">Zip: </label>
+      <div class="col-sm-10" *ngIf="currentStudent.zip">
+        <input type="text" class="form-control" [(ngModel)]="currentStudent.zip" name="inputZip">
       </div>
 
       <label for="course" class="col-sm-2 col-form-label">Course: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="grade.Course" name="inputCourse">
+        <input type="text" class="form-control" [(ngModel)]="currentStudent.course" name="inputCourse">
       </div>
 
       <label for="grade" class="col-sm-2 col-form-label">Grade: </label>
       <div class="col-sm-10">
-        <input type="number" class="form-control" [(ngModel)]="grade.Grade" name="inputGrade">
+        <input type="number" class="form-control" [(ngModel)]="currentStudent.grade" name="inputGrade">
       </div>
     </div>
     <div class="col-12">
       <button type="button" class="btn" (click)="cancelUpdating()">Cancel</button>
-      <button type="submit" class="btn btn-success" (click)="saveStudent()">Save</button>
+      <button type="button" class="btn btn-success" (click)="saveStudent()">Save</button>
     </div>
   </form>
 </div>

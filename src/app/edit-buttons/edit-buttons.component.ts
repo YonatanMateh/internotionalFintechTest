@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentsService } from '../students.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DeleteStudentDialogComponent } from '../delete-student-dialog/delete-student-dialog.component';
+// import { DeleteStudentDialogComponent } from '../delete-student-dialog/delete-student-dialog.component';
 import { AddStudentComponent } from '../add-student/add-student.component';
 
 @Component({
@@ -29,6 +29,13 @@ export class EditButtonsComponent implements OnInit {
   }
  
   openDeleteDialog(): void {
+    if(this.studentsService.isSelctedStudent()) {
+
+    this.studentsService.removeStudent();
+    } else {
+      alert("You need to select student!");
+    }
+/*
     console.log(this.studentsService.isSelctedStudent());
     if(this.studentsService.isSelctedStudent()) {
       let dialogRef = this.dialog.open(DeleteStudentDialogComponent, {
@@ -40,7 +47,9 @@ export class EditButtonsComponent implements OnInit {
     } else {
       alert("You need to select student!");
     }
-  }
+  
 
+  */
+  }
 
 }

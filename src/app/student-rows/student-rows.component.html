@@ -1,5 +1,14 @@
-<ng-container *ngFor="let student of students |filterStudents: 'id' : 12 | paginate: { itemsPerPage: 1, currentPage: p}">
-    <tr *ngFor="let grade of student.Grades ; let i=index "
+<!-- <ng-container *ngFor="let student of students | filterStudents: filterObj | paginate: { itemsPerPage: 1, currentPage: p}">
+    <tr *ngFor="let grade of student.Grades | filterGrades: filterObj; let i=index "
     student-row [student]="student" [grade]="grade" (click)="studentSelected(student, grade, i)">
 </tr>
-</ng-container>
+</ng-container> -->
+<tr *ngFor="let student of students | filterStudents: filterObj | paginate: { itemsPerPage: 10, currentPage: p}; let i=index "
+ (click)="studentSelected(student)">
+ <!-- , ((p-1)*10)+i)"> -->
+ <td >{{student.id}}</td>
+<td>{{student.firstName}} {{student.lastName}}</td>
+<td>{{student.date}}</td>
+<td>{{student.grade}}</td>
+<td>{{student.course}}</td>
+</tr>
