@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { calculateStudentsAvarge } from '../averageCalculation';
 import { Chart } from 'chart.js';
 import { StatisticsService } from '../statistics.service';
@@ -9,50 +9,32 @@ import { Student } from '../models/student';
   styleUrls: ['./chart-view.component.css']
 })
 export class ChartViewComponent implements OnInit {
-  test = [];
-  chart: Chart;
-  /*
-  @Input() set students(a) {
-    //console.log('a',a);
-    // this.chart.labels.push = a[0];
-    // this.chart.update();
-     this.updateChart(a, this.courses)
-  };
-  @Input() set courses(b) {
-    //console.log('b',b);
-    this.updateChart(this.students, b)
-  }
-  
-updateChart(students, courses) {
-  console.log('students ', students, 'courses', courses);
-  this.addChart(students);
-}
-*/
+  studentsChart: Chart;
+  coursesChart: Chart;
   constructor(private statisticsService: StatisticsService) {
   }
 
+  initChart() {
+    this.studentsChart = this.createChart('student-chart', 'Students avarege');
+    this.coursesChart = this.createChart('courses-chart', 'Courses avarege')
+   
+  }
 
-  // ngOnChanges(changes) {
-  //       console.log('changes ', changes);
-  // }
-  addChart(students, avareges) {
-    console.log('chart ', students, avareges);
-    this.chart = new Chart('canvas', {
+  createChart(id: string, title: string): Chart {
+    const chart = new Chart(id, {
       type: 'bar',
       data: {
-        labels: students,//["Africa", "Asia", "Europe", "Latin America", "North America"],
-        datasets: [
-          {
-            backgroundColor: "#3e95cd",//["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-            data: avareges//[2478, 5267, 734, 784, 433]
-          }
-        ]
+        labels: [],
+        datasets: [{
+          backgroundColor: "#3e95cd",
+          data: []
+        }]
       },
       options: {
         legend: { display: false },
         title: {
           display: true,
-          text: 'Students avarege'
+          text: title//'Students avarege'
         },
         scales: {
           yAxes: [{
@@ -66,39 +48,30 @@ updateChart(students, courses) {
         }
       }
     });
+    return chart;
   }
-
   ngOnInit() {
-    this.addChart([], []);
+    this.initChart();
     this.statisticsService.selectedStudents.subscribe(data => {
-      console.log('students from service', data);
-      if (data) {
-        this.chart.data.labels = data.students;
-         this.chart.data.datasets[0].data = data.averages;
-       // this.chart.data.backgroundColor= ["#3e95cd"];
-      //   this.chart.data.datasets.forEach((dataset) => {
-      //     dataset.data.push(data);
-      // });
-        // this.chart.options.title.text = "22222222"
-        this.chart.update();
-        // this.addChart(data.students, data.averages);
-      }
+      this.updateChart(data);
     });
 
     this.statisticsService.selectedCourses.subscribe(data => {
-     console.log("from service: ", data);
-     if (data) {
-      this.chart.data.labels = data.students;
-       this.chart.data.datasets[0].data = data.averages;
-     // this.chart.data.backgroundColor= ["#3e95cd"];
-    //   this.chart.data.datasets.forEach((dataset) => {
-    //     dataset.data.push(data);
-    // });
-      // this.chart.options.title.text = "22222222"
-      this.chart.update();
-      // this.addChart(data.students, data.averages);
-    }
+      this.updateChart(data);
     })
-    // console.log(this.students);
+  }
+
+  updateChart(data) {
+    if (data) {
+      this.studentsChart.data.labels = data.students;
+      this.studentsChart.data.datasets[0].data = data.averages;
+      this.studentsChart.update();
+
+
+      console.log(data);
+      this.coursesChart.data.labels = data.courses;
+      this.coursesChart.data.datasets[0].data = data.coursesAverage;
+      this.coursesChart.update();
+    }
   }
 }
