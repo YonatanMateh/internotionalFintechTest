@@ -18,6 +18,7 @@ import { DetailsWindowComponent } from './details-window/details-window.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StudentsService } from './students.service';
+import { StatisticsService } from './statistics.service';
 
 import { DataPageComponent } from './data-page/data-page.component';
 import { RoutingModule } from './routing/routing.module';
@@ -30,6 +31,7 @@ import { FilterGradesPipe } from './filter-grades.pipe';
 import { StatisticsPageComponent } from './statistics-page/statistics-page.component';
 import { StatisticsSelectionComponent } from './statistics-selection/statistics-selection.component';
 import { AverageWindowComponent } from './average-window/average-window.component';
+import { ChartViewComponent } from './chart-view/chart-view.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { AverageWindowComponent } from './average-window/average-window.componen
     FilterGradesPipe,
     StatisticsPageComponent,
     StatisticsSelectionComponent,
-    AverageWindowComponent
+    AverageWindowComponent,
+    ChartViewComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ import { AverageWindowComponent } from './average-window/average-window.componen
     SelectDropDownModule
     ],
   entryComponents: [AddStudentComponent, EditButtonsComponent],
-  providers: [StudentsService],
+  providers: [StudentsService, StatisticsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

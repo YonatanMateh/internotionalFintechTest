@@ -5,7 +5,8 @@
   <div class="row">
     <label class="col-md-2">Select Student:</label>
     <div class="col-md-4">
-      <ngx-select-dropdown (change)="studentSelectionChanged($event)" [config]="config" [options]="studentsList" [(value)]="selectedStudents" [multiple]="true">Select Student</ngx-select-dropdown>
+      <ngx-select-dropdown (change)="studentSelectionChanged($event)" [config]="config" [options]="studentsList"
+       [(value)]="selectedStudents" [multiple]="true">Select Student</ngx-select-dropdown>
     </div>
   </div>
   <br>
@@ -16,11 +17,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4">
-      <average-window [students]="selectedStudents" [courses]="selectedCourses"></average-window>
+    <div class="col-md-6">
+      <chart-view></chart-view>
+      <!-- <chart-view [students]="selectedStudentsToPass" [courses]="selectedCoursesToPass"></chart-view> -->
     </div>
-    <div class="col-md-4">
-      <average-window [students]="selectedStudents" [courses]="selectedCourses"></average-window>
+    <div class="col-md-6">
+        <!-- <chart-view [students]="selectedStudents" [courses]="selectedCourses"></chart-view> -->
+
+      <!-- <average-window [students]="selectedStudents" [courses]="selectedCourses"></average-window> -->
 
     </div>
   </div>

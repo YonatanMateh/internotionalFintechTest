@@ -12,7 +12,7 @@ export class AverageWindowComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.students);
-    console.log(calculateStudentsAvarge('a'));
+    // console.log(calculateStudentsAvarge('a'));
   }
 
 }
