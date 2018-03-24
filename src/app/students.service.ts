@@ -44,13 +44,24 @@ export class StudentsService {
     this.studentList = new Set();
     this.coursesList = new Set();
 
+    // this.students.forEach(student => {
+    //   let { firstName, lastName, course } = student
+    //   this.studentList.add(firstName + ' ' + lastName);
+    //   this.coursesList.add(course);
+    // })
+this.updateLists();
+    
+  }
+
+  private updateLists() {
+    this.studentList.clear();
+    this.coursesList.clear();
     this.students.forEach(student => {
       let { firstName, lastName, course } = student
       this.studentList.add(firstName + ' ' + lastName);
       this.coursesList.add(course);
+      console.log('update ',this.coursesList);
     })
-
-    
   }
 
   changeStudent(student: any) {
@@ -68,7 +79,7 @@ export class StudentsService {
   getAllStudents(): Student[] {
     // this.students = data;
 
-    console.log('get', this.students);
+    // console.log('get', this.students);
     return this.students;
   }
 
@@ -77,15 +88,19 @@ export class StudentsService {
   }
 
   getStudentsList(): Set<string> {
-    
+    // console.log('students ',this.studentList);
+
     return this.studentList;
   }
 
-  getCoursesList(): Set<string>{
+  getCoursesList(): Set<string> {
+    console.log('courses ',this.coursesList);
 return this.coursesList;
   }
   addStudent(student: Student) {
     this.students.push(student);
+    this.updateLists();
+
   }
 
   updateStudent(student: Student) {
@@ -94,6 +109,7 @@ return this.coursesList;
     let index = this.students.findIndex(currentStudent => currentStudent.privateKey == student.privateKey);
     console.log(student, index);
     this.students[index] = student;
+    this.updateLists();
     this.changeStudent(null);
   }
 
@@ -112,6 +128,8 @@ return this.coursesList;
 
     //  this.students = this.students.filter(student => student.id !== id);
     //  console.log(this.students);
+    this.updateLists();
+
     this.changeStudent(null);
   }
 

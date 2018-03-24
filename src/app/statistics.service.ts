@@ -21,9 +21,7 @@ export class StatisticsService {
   }
 
   changeStudents(students: any) {
-    //  console.log(students);
-    // var x = 4.3455;
-    // alert(x.toFixed(1));
+   
     this.studentsList = students;
     let arr = this.calculateAvarageByStudent(students);
     let coursesAverage =  this.calculateAvarageByCourse();
@@ -33,7 +31,7 @@ export class StatisticsService {
       averages: arr,
       coursesAverage: coursesAverage
     }
-    console.log(obj);
+    // console.log(obj);
 
     this.selectedStudentsSource.next(obj);
   }

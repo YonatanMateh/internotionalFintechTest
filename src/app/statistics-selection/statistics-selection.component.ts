@@ -21,6 +21,7 @@ export class StatisticsSelectionComponent implements OnInit {
     this.studentsList = Array.from(this.studentsService.getStudentsList());
     this.coursesList = Array.from(this.studentsService.getCoursesList());
      this.statisticsService.changeStudents(this.studentsList);
+     this.statisticsService.changeCourses(this.coursesList);
   // this.selectedStudentsToPass = this.studentsList;
   // this.selectedCoursesToPass = this.coursesList;
    }
@@ -30,7 +31,6 @@ export class StatisticsSelectionComponent implements OnInit {
   }
 
   coursesSelectionChanged(a) {
-    console.log(this.selectedCourses);
     // this.abc = Object.assign({}, this.selectedStudents);
     // if(this.selectedCourses.length < 1) {
     //   this.selectedCoursesToPass = this.coursesList;
