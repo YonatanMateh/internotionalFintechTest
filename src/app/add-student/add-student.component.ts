@@ -12,7 +12,6 @@ import { UUID } from 'angular2-uuid';
 })
 export class AddStudentComponent implements OnInit {
   student: Student;
-  // grade: Grade;
 
   constructor(public dialogRef: MatDialogRef<EditButtonsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -24,16 +23,12 @@ export class AddStudentComponent implements OnInit {
 
   ngOnInit() {
     this.student = new Student();
-    // this.grade = new Grade();
-    // this.student.Grades = [];
   }
 
   saveStudent() {
-    console.log(this.isObjectPropertiesNotNull(this.student));
     if (this.isObjectPropertiesNotNull(this.student)) {
       this.student.id = this.studentsService.getLastId() + 1;
       this.student.privateKey = UUID.UUID();
-      // this.student.Grades.push(this.grade);
       this.studentsService.addStudent(this.student);
       this.dialogRef.close();
     }
@@ -44,7 +39,6 @@ export class AddStudentComponent implements OnInit {
   }
 
   isObjectPropertiesNotNull(obj) {
-    console.log(Object.keys(obj).length);
     if (Object.keys(obj).length < 8) {
       return false;
     }

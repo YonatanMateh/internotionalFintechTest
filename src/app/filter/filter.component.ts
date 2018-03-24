@@ -13,17 +13,14 @@ export class FilterComponent implements OnInit {
     private stateService: StateService) { }
 
   onSubmit() {
-    console.log('object ',this.filterText);
- //   if(this.filterText) {
     this.studentsService.filterStudents(this.filterText, error => {
-      if(error) alert(error);
+      if (error) alert(error);
     });
- // }
   }
   ngOnInit() {
-    if(this.stateService.currentFilter) {
-    let { text, type, operator} = this.stateService.currentFilter;
-    this.filterText = type + operator + ' ' + text;
+    if (this.stateService.currentFilter) {
+      let { text, type, operator } = this.stateService.currentFilter;
+      this.filterText = type + operator + ' ' + text;
     }
   }
 

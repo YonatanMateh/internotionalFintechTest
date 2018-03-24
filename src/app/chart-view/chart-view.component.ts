@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { calculateStudentsAvarge } from '../averageCalculation';
 import { Chart } from 'chart.js';
 import { StatisticsService } from '../statistics.service';
 import { Student } from '../models/student';
@@ -9,15 +8,15 @@ import { Student } from '../models/student';
   styleUrls: ['./chart-view.component.css']
 })
 export class ChartViewComponent implements OnInit {
+
   studentsChart: Chart;
   coursesChart: Chart;
-  constructor(private statisticsService: StatisticsService) {
-  }
+
+  constructor(private statisticsService: StatisticsService) { }
 
   initChart() {
     this.studentsChart = this.createChart('student-chart', 'Students avarege');
     this.coursesChart = this.createChart('courses-chart', 'Courses avarege')
-   
   }
 
   createChart(id: string, title: string): Chart {
@@ -34,7 +33,7 @@ export class ChartViewComponent implements OnInit {
         legend: { display: false },
         title: {
           display: true,
-          text: title//'Students avarege'
+          text: title
         },
         scales: {
           yAxes: [{
@@ -64,11 +63,9 @@ export class ChartViewComponent implements OnInit {
   updateChart(data) {
     if (data) {
       this.studentsChart.data.labels = data.students;
-      this.studentsChart.data.datasets[0].data = data.averages;
+      this.studentsChart.data.datasets[0].data = data.studentsAverage;
       this.studentsChart.update();
 
-
-      console.log(data);
       this.coursesChart.data.labels = data.courses;
       this.coursesChart.data.datasets[0].data = data.coursesAverage;
       this.coursesChart.update();

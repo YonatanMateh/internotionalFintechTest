@@ -8,14 +8,12 @@ import { StudentsService } from '../students.service';
 })
 export class StudentsTableComponent implements OnInit {
   p:number = 1;
- // students: any[];
+  //?
   @Input() maxSize: number = 5;
 
   constructor(private studentsService: StudentsService) { }
 
   ngOnInit() {
-    // console.log(this.studentsService.getAllStudents());
-   // this.students = this.studentsService.getAllStudents();
   }
 
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentsService } from '../students.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-// import { DeleteStudentDialogComponent } from '../delete-student-dialog/delete-student-dialog.component';
 import { AddStudentComponent } from '../add-student/add-student.component';
 
 @Component({
@@ -19,7 +18,6 @@ export class EditButtonsComponent implements OnInit {
   }
 
   addStudent() {
-    console.log('add student');
     let dialogRef = this.dialog.open(AddStudentComponent, {
       width: '70%'
     });
@@ -27,29 +25,13 @@ export class EditButtonsComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
- 
+
   openDeleteDialog(): void {
-    if(this.studentsService.isSelctedStudent()) {
+    if (this.studentsService.isSelctedStudent()) {
 
-    this.studentsService.removeStudent();
+      this.studentsService.removeStudent();
     } else {
       alert("You need to select student!");
     }
-/*
-    console.log(this.studentsService.isSelctedStudent());
-    if(this.studentsService.isSelctedStudent()) {
-      let dialogRef = this.dialog.open(DeleteStudentDialogComponent, {
-        width: '250px'
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
-    } else {
-      alert("You need to select student!");
-    }
-  
-
-  */
   }
-
 }

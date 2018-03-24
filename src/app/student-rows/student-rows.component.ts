@@ -10,36 +10,29 @@ import { StateService } from '../state.service';
   styleUrls: ['./student-rows.component.css']
 })
 export class StudentRowsComponent implements OnInit {
- @Input() p: number;
+  @Input() p: number;
   students: Student[];
   currentStudent: Student;
   filterObj: FilterObj;
+
   constructor(private studentsService: StudentsService,
-  private stateService: StateService) { }
+    private stateService: StateService) { }
 
   ngOnInit() {
-    // console.log(this.studentsService.getAllStudents());
-    console.log('state ', this.stateService);
     this.students = this.studentsService.getAllStudents();
     this.studentsService.currentStudent.subscribe(student => this.currentStudent = student);
     this.studentsService.currentFilterObj.subscribe(filterObj => this.filterObj = filterObj);
     this.getSavedState();
   }
+  
   studentSelected(student) {
-    // let obj = {
-    //   student: student,
-    //   index: index
-    // }
-    console.log('change student ',student);
     this.studentsService.changeStudent(student);
   }
 
   ngOnDestroy() {
-  
     this.stateService.currentFilter = this.filterObj;
     this.stateService.currentStudent = this.currentStudent;
     this.stateService.pageNumber = this.p;
-    console.log('state end ', this.stateService);
   }
 
   getSavedState() {

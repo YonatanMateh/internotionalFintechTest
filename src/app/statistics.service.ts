@@ -5,12 +5,13 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { StudentsService } from './students.service';
 @Injectable()
 export class StatisticsService {
-  // private studentSource = new BehaviorSubject(null);
   private students;
   private studentsList;
   private coursesList;
+
   private selectedStudentsSource: BehaviorSubject<any> = new BehaviorSubject(null);
   private selectedCoursesSource: BehaviorSubject<any> = new BehaviorSubject(null);
+
   selectedStudents = this.selectedStudentsSource.asObservable();
   selectedCourses = this.selectedCoursesSource.asObservable();
 
@@ -21,36 +22,28 @@ export class StatisticsService {
   }
 
   changeStudents(students: any) {
-   
     this.studentsList = students;
-    let arr = this.calculateAvarageByStudent(students);
-    let coursesAverage =  this.calculateAvarageByCourse();
-    let obj = {
-      students: this.studentsList,
-      courses: this.coursesList,
-      averages: arr,
-      coursesAverage: coursesAverage
-    }
-    // console.log(obj);
-
-    this.selectedStudentsSource.next(obj);
+    let studentsAverage = this.calculateAvarageByStudent(students);
+    let coursesAverage = this.calculateAvarageByCourse();
+    this.selectedStudentsSource.next(this._updateObject(studentsAverage, coursesAverage));
   }
 
   changeCourses(courses: any) {
     this.coursesList = courses;
-   // console.log(this.coursesList);
-    let arr = this.calculateAvarageByStudent(this.studentsList);
-    let coursesAverage =  this.calculateAvarageByCourse();
-    let obj = {
+    let studentsAverage = this.calculateAvarageByStudent(this.studentsList);
+    let coursesAverage = this.calculateAvarageByCourse();
+    this.selectedCoursesSource.next(this._updateObject(studentsAverage, coursesAverage));
+  }
+
+  private _updateObject(studentsAverage, coursesAverage): any {
+    return {
       students: this.studentsList,
       courses: this.coursesList,
-      averages: arr,
+      studentsAverage: studentsAverage,
       coursesAverage: coursesAverage
-    }
-    console.log(obj);
-    this.selectedCoursesSource.next(obj);
-    // this.changeStudents(this.students);
+    };
   }
+
   getSelectedStudents() {
     return this.studentsList;
   }
@@ -60,9 +53,7 @@ export class StatisticsService {
   }
 
   calculateAvarageByStudent(students) {
-   
     let set = new Set(this.coursesList);
-    // console.log(set);
     let averageArr = [];
     for (let currentStudent of students) {
       let counter = 0;
@@ -70,19 +61,14 @@ export class StatisticsService {
       let average = 0;
       for (let student of this.students) {
         if (student.firstName + ' ' + student.lastName == currentStudent) {
-          //console.log(currentStudent);
-          
           if (set.has(student.course)) {
             counter++;
-            // console.log(student.grade);
             sum += student.grade;
           }
         }
       }
       average = sum / counter;
-      // console.log(average, sum, counter);
       averageArr.push(Number(average.toFixed(1)));
-      // console.log(average);
     }
     return averageArr;
   }
@@ -90,23 +76,19 @@ export class StatisticsService {
   calculateAvarageByCourse() {
     let set = new Set(this.studentsList);
     let averageArr = [];
-    for(let course of this.coursesList) {
-      console.log(course);
+    for (let course of this.coursesList) {
       let counter = 0;
       let sum = 0;
       let average = 0;
-      for(let student of this.students) {
-       // console.log(student.course, course);
-        if(student.course == course && set.has(student.firstName+' '+student.lastName)) {
+      for (let student of this.students) {
+        if (student.course == course && set.has(student.firstName + ' ' + student.lastName)) {
           counter++;
-          // console.log(student.grade);
           sum += student.grade;
         }
       }
       average = sum / counter;
-       console.log(average, sum, counter);
       averageArr.push(Number(average.toFixed(1)));
     }
-   return averageArr;
+    return averageArr;
   }
 }

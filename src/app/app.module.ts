@@ -13,7 +13,6 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { FilterComponent } from './filter/filter.component';
 import { EditButtonsComponent } from './edit-buttons/edit-buttons.component';
 import { StudentsTableComponent } from './students-table/students-table.component';
-// import { StudentRowComponent } from './student-row/student-row.component';
 import { DetailsWindowComponent } from './details-window/details-window.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -24,14 +23,9 @@ import { StateService } from './state.service';
 import { DataPageComponent } from './data-page/data-page.component';
 import { RoutingModule } from './routing/routing.module';
 import { StudentRowsComponent } from './student-rows/student-rows.component';
-import { PaginationComponent } from './pagination/pagination.component';
-// import { DeleteStudentDialogComponent } from './delete-student-dialog/delete-student-dialog.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { FilterStudentsPipe } from './filter-students.pipe';
-import { FilterGradesPipe } from './filter-grades.pipe';
-import { StatisticsPageComponent } from './statistics-page/statistics-page.component';
 import { StatisticsSelectionComponent } from './statistics-selection/statistics-selection.component';
-import { AverageWindowComponent } from './average-window/average-window.component';
 import { ChartViewComponent } from './chart-view/chart-view.component';
 
 @NgModule({
@@ -41,18 +35,12 @@ import { ChartViewComponent } from './chart-view/chart-view.component';
     FilterComponent,
     EditButtonsComponent,
     StudentsTableComponent,
-    // StudentRowComponent,
     DetailsWindowComponent,
     DataPageComponent,
     StudentRowsComponent,
-    PaginationComponent,
-    // DeleteStudentDialogComponent,
     AddStudentComponent,
     FilterStudentsPipe,
-    FilterGradesPipe,
-    StatisticsPageComponent,
     StatisticsSelectionComponent,
-    AverageWindowComponent,
     ChartViewComponent
   ],
   imports: [

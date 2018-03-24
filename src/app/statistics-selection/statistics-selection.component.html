@@ -1,23 +1,18 @@
-<p>
-  statistics-selection works!
-</p>
 <div class="container">
   <div class="row">
     <label class="col-md-2">Select Student:</label>
     <div class="col-md-4">
-      <ngx-select-dropdown (change)="studentSelectionChanged()" [config]="config" [options]="studentsList"
-       [(value)]="selectedStudents" [multiple]="true">Select Student</ngx-select-dropdown>
+      <ngx-select-dropdown (change)="studentSelectionChanged()" [config]="config" [options]="studentsList" [(value)]="selectedStudents"
+        [multiple]="true">Select Student</ngx-select-dropdown>
     </div>
   </div>
   <br>
   <div class="row">
     <label class="col-md-2">Select Course:</label>
     <div class="col-md-4">
-      <ngx-select-dropdown (change)="coursesSelectionChanged()" [config]="config" [options]="coursesList"  [(value)]="selectedCourses" [multiple]="true">Select Course</ngx-select-dropdown>
+      <ngx-select-dropdown (change)="coursesSelectionChanged()" [config]="config" [options]="coursesList" [(value)]="selectedCourses"
+        [multiple]="true">Select Course</ngx-select-dropdown>
     </div>
   </div>
- 
-      <chart-view></chart-view>
-
-  <!-- </div> -->
+  <chart-view></chart-view>
 </div>
