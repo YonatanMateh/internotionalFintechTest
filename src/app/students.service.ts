@@ -31,7 +31,11 @@ export class StudentsService {
         student.email = temp.email;
         student.address = temp.Address;
         student.country = temp.Country;
-        student.zip = temp.Zip || '';
+        if(temp.hasOwnProperty('Zip')) {
+          student.zip = temp.Zip;
+        } else {
+          student.zip = '';
+        }
         student.date = grade.Date;
         student.grade = grade.Grade;
         student.course = grade.Course;

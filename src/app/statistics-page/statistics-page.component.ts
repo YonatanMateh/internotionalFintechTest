@@ -11,7 +11,11 @@ export class StatisticsPageComponent implements OnInit {
   constructor(private studentsService: StudentsService) { }
 
   ngOnInit() {
-   
+   console.log('stats init');
+  }
+
+  ngOnDestroy() {
+    console.log('stats end');
   }
 
 }

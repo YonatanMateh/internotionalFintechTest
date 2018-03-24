@@ -14,6 +14,9 @@ export class DataPageComponent implements OnInit {
     this.studentsService.currentStudent.subscribe(student => {
       this.isStudentChosen = student ? true : false;
     });
+    console.log('data init');
   }
-
+  ngOnDestroy() {
+    console.log('data end');
+  }
 }

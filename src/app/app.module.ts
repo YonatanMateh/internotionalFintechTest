@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StudentsService } from './students.service';
 import { StatisticsService } from './statistics.service';
+import { StateService } from './state.service';
 
 import { DataPageComponent } from './data-page/data-page.component';
 import { RoutingModule } from './routing/routing.module';
@@ -66,7 +67,7 @@ import { ChartViewComponent } from './chart-view/chart-view.component';
     SelectDropDownModule
     ],
   entryComponents: [AddStudentComponent, EditButtonsComponent],
-  providers: [StudentsService, StatisticsService],
+  providers: [StudentsService, StatisticsService, StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
