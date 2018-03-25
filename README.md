@@ -5,7 +5,8 @@ Navigate to `http://localhost:4200/`.
 ## Data page
 ###### Filter
 The app contains filter field, that enables you to filter with `id`, `grade` or `date`.<br>
-The valid operators are: `:` for equal data, for example: `id: 3`, returns the list of all the students with id 3.<br>
+The valid operators are:<br>
+`:` for equal data, for example: `id: 3`, returns the list of all the students with id 3.<br>
 `>`, for example `grade > 90`, returns all students that have grades bigger than 90.<br>
 `<`, for example `date < 1/1/2016`, returns all students with courses before the first day of 2016.
 ###### Data table
