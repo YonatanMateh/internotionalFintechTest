@@ -8,7 +8,7 @@
       <th scope="col">Course</th>
     </tr>
   </thead>
-  <tbody student-rows [p]="p">
+  <tbody student-rows [p]="pageNumber">
   </tbody>
 </table>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<pagination-controls (pageChange)="pageNumber = $event"></pagination-controls>

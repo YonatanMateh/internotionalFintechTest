@@ -9,7 +9,7 @@ import { Student } from '../models/student';
 })
 export class DetailsWindowComponent implements OnInit {
 
-  currentStudent: Student;
+  private currentStudent: Student;
   constructor(private studentsService: StudentsService) { }
 
   ngOnInit() {
@@ -19,12 +19,12 @@ export class DetailsWindowComponent implements OnInit {
       }
     });
   }
-
-  saveStudent() {
+  //actions
+  private saveStudent() {
     this.studentsService.updateStudent(this.currentStudent);
   }
 
-  cancelUpdating() {
+  private cancel() {
     this.studentsService.changeStudent(null);
   }
 

@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Student } from './models/student';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { data } from './initialStudent';
-import { FilterObj } from './models/FilterObj';
 import { UUID } from 'angular2-uuid';
 
+import { Student } from './models/student';
+import { data } from './initialStudent';
+import { FilterObj } from './models/FilterObj';
+/*
+ this service is the main service and contain akk the student data/filtering/students and courses lists-sets
+*/
 @Injectable()
 export class StudentsService {
   private students: Student[];
@@ -19,6 +22,8 @@ export class StudentsService {
 
   constructor() {
     this.students = [];
+    // first initialization
+    // getting the data from the json file and converted to normal object
     data.forEach((temp: any) => {
       for (let grade of temp.Grades) {
         let student = new Student();
@@ -42,31 +47,22 @@ export class StudentsService {
     this.updateLists();
   }
 
-  private updateLists() {
-    this.studentList.clear();
-    this.coursesList.clear();
-    this.students.forEach(student => {
-      let { firstName, lastName, course } = student
-      this.studentList.add(firstName + ' ' + lastName);
-      this.coursesList.add(course);
-    })
-  }
 
-  changeStudent(student: any) {
+  changeStudent(student: any): void {
     this.studentSource.next(student)
   }
 
-  changeFilterData(data: FilterObj) {
+  changeFilterData(data: FilterObj): void{
     this.filterSource.next(data);
   }
+  
 
-  isSelctedStudent(): boolean {
-    return this.studentSource.value ? true : false;
-  }
+  //getters
   getAllStudents(): Student[] {
     return this.students;
   }
 
+  // get the last id (when creating a new student)
   getLastId(): number {
     return this.students[this.students.length - 1].id;
   }
@@ -79,20 +75,26 @@ export class StudentsService {
     return this.coursesList;
   }
 
-  addStudent(student: Student) {
+  isSelctedStudent(): boolean {
+    return this.studentSource.value ? true : false;
+  }
+  
+//public methods
+  addStudent(student: Student): void {
     this.students.push(student);
     this.updateLists();
-
   }
 
-  updateStudent(student: Student) {
+  //update student after change his data
+  updateStudent(student: Student): void {
     let index = this.students.findIndex(currentStudent => currentStudent.privateKey == student.privateKey);
     this.students[index] = student;
     this.updateLists();
     this.changeStudent(null);
   }
 
-  removeStudent() {
+  //delete student from the students array
+  removeStudent(): void {
     const { privateKey } = this.studentSource.value;
     let index = this.students.findIndex(currentStudent => currentStudent.privateKey == privateKey);
     this.students.splice(index, 1);
@@ -100,7 +102,8 @@ export class StudentsService {
     this.changeStudent(null);
   }
 
-  filterStudents(searchText: string, callback: Function) {
+  // checking the validaton of filter input
+  filterStudents(searchText: string, callback: Function): void {
     if (!searchText) {
       this.changeFilterData(null);
       return;
@@ -120,12 +123,34 @@ export class StudentsService {
     } else {
       callback("Invalid input");
     }
+
     if (type && operator && text && !isError) {
       let data = new FilterObj(type, text, operator);
       this.changeFilterData(data);
     }
   }
 
+  //methods
+  private getFilterType(text: string): string {
+    switch (text.toLowerCase()) {
+      case 'id': case 'grade': case 'date':
+        return text.toLowerCase();
+      default: return null;
+    }
+  }
+
+  // generating the students/courses lists-sets (only by name)
+  private updateLists() {
+    this.studentList.clear();
+    this.coursesList.clear();
+    this.students.forEach(student => {
+      let { firstName, lastName, course } = student
+      this.studentList.add(firstName + ' ' + lastName);
+      this.coursesList.add(course);
+    })
+  }
+
+  //validation method
   private isValidDate(date: string): boolean {
     let dateCheck = new Date(date);
     return dateCheck.toString() !== "Invalid Date";
@@ -133,14 +158,6 @@ export class StudentsService {
 
   private isNumeric(value): boolean {
     return /^\d+$/.test(value);
-  }
-
-  private getFilterType(text: string): string {
-    switch (text.toLowerCase()) {
-      case 'id': case 'grade': case 'date':
-        return text.toLowerCase();
-      default: return null;
-    }
   }
 
 }

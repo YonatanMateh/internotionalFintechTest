@@ -8,20 +8,21 @@ import { StateService } from '../state.service';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  filterText: string;
+  private filterText: string;
   constructor(private studentsService: StudentsService,
     private stateService: StateService) { }
 
-  onSubmit() {
-    this.studentsService.filterStudents(this.filterText, error => {
-      if (error) alert(error);
-    });
-  }
   ngOnInit() {
+    //getting the saved data from the state service
     if (this.stateService.currentFilter) {
       let { text, type, operator } = this.stateService.currentFilter;
       this.filterText = type + operator + ' ' + text;
     }
   }
 
+  private onSubmit() {
+    this.studentsService.filterStudents(this.filterText, error => {
+      if (error) alert(error);
+    });
+  }
 }

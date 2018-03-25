@@ -1,19 +1,23 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { StudentsService } from '../students.service';
-import { FilterObj } from '../models/FilterObj';
-import { Student } from '../models/student';
 import { StateService } from '../state.service';
 
+import { FilterObj } from '../models/FilterObj';
+import { Student } from '../models/student';
+/*
+this component contains the table data rows of all students
+*/
 @Component({
   selector: '[student-rows]',
   templateUrl: './student-rows.component.html',
   styleUrls: ['./student-rows.component.css']
 })
 export class StudentRowsComponent implements OnInit {
-  @Input() p: number;
-  students: Student[];
-  currentStudent: Student;
-  filterObj: FilterObj;
+  @Input() p: number; //page number
+  private students: Student[];
+  private currentStudent: Student; //the chosen student
+  private filterObj: FilterObj;
 
   constructor(private studentsService: StudentsService,
     private stateService: StateService) { }
@@ -25,17 +29,19 @@ export class StudentRowsComponent implements OnInit {
     this.getSavedState();
   }
   
-  studentSelected(student) {
-    this.studentsService.changeStudent(student);
-  }
-
   ngOnDestroy() {
     this.stateService.currentFilter = this.filterObj;
     this.stateService.currentStudent = this.currentStudent;
     this.stateService.pageNumber = this.p;
   }
 
-  getSavedState() {
+  //actions
+  private studentSelected(student) {
+    this.studentsService.changeStudent(student);
+  }
+
+  //methods
+  private getSavedState() { 
     this.currentStudent = this.stateService.currentStudent || null;
     this.filterObj = this.stateService.currentFilter || null;
     this.p = this.stateService.pageNumber || null;

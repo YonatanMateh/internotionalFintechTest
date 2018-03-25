@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
+
 import { StudentsService } from '../students.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AddStudentComponent } from '../add-student/add-student.component';
 
 @Component({
@@ -17,7 +18,8 @@ export class EditButtonsComponent implements OnInit {
   ngOnInit() {
   }
 
-  addStudent() {
+  //actions
+  private addStudent(): void {
     let dialogRef = this.dialog.open(AddStudentComponent, {
       width: '70%'
     });
@@ -26,9 +28,8 @@ export class EditButtonsComponent implements OnInit {
     });
   }
 
-  openDeleteDialog(): void {
+  private openDeleteDialog(): void {
     if (this.studentsService.isSelctedStudent()) {
-
       this.studentsService.removeStudent();
     } else {
       alert("You need to select student!");

@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentsService } from '../students.service';
-
+/*
+this component contains  the data page
+*/
 @Component({
   selector: 'data-page',
   templateUrl: './data-page.component.html',
   styleUrls: ['./data-page.component.css']
 })
 export class DataPageComponent implements OnInit {
-  isStudentChosen: boolean;
+  private isStudentChosen: boolean;
   constructor(private studentsService: StudentsService) { }
 
   ngOnInit() {

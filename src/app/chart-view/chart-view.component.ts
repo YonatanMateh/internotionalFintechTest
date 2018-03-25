@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { StatisticsService } from '../statistics.service';
 import { Student } from '../models/student';
+/*
+this component creates the students/courses chart
+
+*/
+
 @Component({
   selector: 'chart-view',
   templateUrl: './chart-view.component.html',
@@ -9,17 +14,30 @@ import { Student } from '../models/student';
 })
 export class ChartViewComponent implements OnInit {
 
-  studentsChart: Chart;
-  coursesChart: Chart;
+  private studentsChart: Chart;
+  private coursesChart: Chart;
 
   constructor(private statisticsService: StatisticsService) { }
 
-  initChart() {
+  ngOnInit() {
+    this.initChart();
+    //listener for when the students or courses lists are chnged 
+    this.statisticsService.selectedStudents.subscribe(data => {
+      this.updateChart(data);
+    });
+
+    this.statisticsService.selectedCourses.subscribe(data => {
+      this.updateChart(data);
+    })
+  }
+
+  //initialization of the charts
+  private initChart(): void {
     this.studentsChart = this.createChart('student-chart', 'Students avarege');
     this.coursesChart = this.createChart('courses-chart', 'Courses avarege')
   }
 
-  createChart(id: string, title: string): Chart {
+  private createChart(id: string, title: string): Chart {
     const chart = new Chart(id, {
       type: 'bar',
       data: {
@@ -49,18 +67,8 @@ export class ChartViewComponent implements OnInit {
     });
     return chart;
   }
-  ngOnInit() {
-    this.initChart();
-    this.statisticsService.selectedStudents.subscribe(data => {
-      this.updateChart(data);
-    });
-
-    this.statisticsService.selectedCourses.subscribe(data => {
-      this.updateChart(data);
-    })
-  }
-
-  updateChart(data) {
+ 
+  private updateChart(data) {
     if (data) {
       this.studentsChart.data.labels = data.students;
       this.studentsChart.data.datasets[0].data = data.studentsAverage;
