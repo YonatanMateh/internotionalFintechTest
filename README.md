@@ -13,6 +13,6 @@ The table contains all courses of all the students.<br>
 Clicking on one row will show the details window on the left side of the page.<br>
 When a student is clicked there is an option to update or remove this student/course from the DB
 
-##Statistics
+## Statistics page
 This page presents the statistics of all the data, separated by student average and course average.<br>
 There are two selected options to choose which student or courses you want to calculate.
